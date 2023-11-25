@@ -1,0 +1,50 @@
+public class Main
+{
+	public static void main(String[] args) 
+	{
+		mobileFactory mobileFactory = new mobileFactory();
+		mobile mobile = mobileFactory.create_mobile("Iphone");
+	}
+}
+public interface mobile
+{
+    void create_mobile();
+}
+class Iphone implements mobile
+{
+    
+    public  void create_mobile()
+    {
+        System.out.print("Iphone Factory"); 
+    }
+}
+
+class OnePlus implements mobile
+{
+    
+    public  void create_mobile()
+    {
+        System.out.print("OnePlus Factory"); 
+    }
+}
+
+class mobileFactory
+{
+    mobile mobile;
+    
+    mobile create(String phone)
+    {
+        if("Iphone".equals(phone))
+        {
+            return new Iphone;
+        }
+        else if("OnePlus".equals(phone))
+        {
+            return new OnePlus();
+        }
+        else{
+            return null;
+        }
+    }
+    
+}
