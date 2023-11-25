@@ -1,0 +1,71 @@
+//Publisher Subscriber Pattern
+public class Main
+{
+	public static void main(String[] args) 
+	{
+	    user1 user1 = new user1();
+	    YT1 YT1 = new YT1();
+	    YT1.registerObserver(user1);
+	    
+	
+	}
+}
+
+//Observer part
+
+interface Observer
+{
+    void get update(String mssg);
+}
+class user1 implements Observer
+{
+    void get update(String mssg)
+    {
+        System.out.println("User1"+mssg);
+    }
+}
+//Publisher
+
+public interface Publisher
+{
+    void registerObserver(Observer o);
+    void unRegisterObserver(Observer o);
+    void notify(String mssg);
+    
+}
+public class YT1 implements Publisher
+{
+    ArryList<Observer> ol;
+    YT1()
+    {
+        ol = new ArryList<>();
+    }
+    
+    registerObserver(Observer o)
+    {
+        ol.add(o);
+    }
+    unRegisterObserver(Observer o)
+    {
+        int idx = ol.indexOf(o);
+        
+        if(idx>=0)
+        {
+            ol.remove(0);
+        }
+    }
+    void notify(String mssg)
+    {
+        for(Observer o : ol)
+        {
+            o.update(mssg);
+        }
+    }
+    void newVideoAdded(String mssg)
+    {
+        notify(mssg);
+    }
+}
+
+
+
